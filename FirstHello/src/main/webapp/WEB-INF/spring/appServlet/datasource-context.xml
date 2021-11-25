@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <!-- DBCP Pool 설정 -->
-  <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+  <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
   	<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
   	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
   	<property name="username" value="soyeon" />
@@ -16,8 +16,8 @@
   <!-- Mybatis 설정 -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
   	<property name="dataSource" ref="dataSource"/>
-  	<property name="configLocation" value="classpath:config/mybatis-config.xml" />
-  	<property name="mapperLocations" value="classpath*:co/soyeon/hello/**/*Impl/*map-xml" /> 
+  	<property name="configLocation" value="classpath:config/mybatis-config.xml" /> <!-- resource밑에서 찾기 -->
+  	<property name="mapperLocations" value="classpath*:co/soyeon/hello/**/service/*-map.xml" /> <!-- service directory 밑에서 찾기 -->
   </bean>
   	
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

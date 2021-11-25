@@ -4,5 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
-
+	<!-- Oracle에서 null 처리 -->
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
 </configuration>
